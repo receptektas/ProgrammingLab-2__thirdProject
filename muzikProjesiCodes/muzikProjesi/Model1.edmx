@@ -1,0 +1,1020 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="db_muzikModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tblAlbum">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tarih" Type="date" Nullable="false" />
+          <Property Name="Tur" Type="int" />
+        </EntityType>
+        <EntityType Name="tblAlbumdekiSanatcilar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AlbumID" Type="int" />
+          <Property Name="SanatciID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblAlbumdekiSarkilar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AlbumID" Type="int" />
+          <Property Name="SarkiID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblCalmaListelerindekiSarkilar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SarkiID" Type="int" Nullable="false" />
+          <Property Name="KullaniciCalmaListesiID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblKullanici">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Parola" Type="varchar" MaxLength="50" />
+          <Property Name="AbonelikTur" Type="smallint" Nullable="false" />
+          <Property Name="RoleID" Type="int" />
+          <Property Name="UlkeID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblKullaniciCalmaListesi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciID" Type="int" Nullable="false" />
+          <Property Name="CalmaListesiTuru" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblKullaniciRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RolIsmi" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPremiumKullaniciOdendiBilgi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciID" Type="int" Nullable="false" />
+          <Property Name="Odendi" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblSanatci">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UlkeID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblSanatcininSarkilari">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SarkiID" Type="int" Nullable="false" />
+          <Property Name="SanatciID" Type="int" Nullable="false" />
+          <Property Name="AlbumID" Type="int" Nullable="false" />
+          <Property Name="Tarih" Type="date" Nullable="false" />
+          <Property Name="SarkiSure" Type="time" Precision="7" Nullable="false" />
+          <Property Name="DinlenmeSayisi" Type="int" />
+        </EntityType>
+        <EntityType Name="tblSarki">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Tur" Type="int" />
+        </EntityType>
+        <EntityType Name="tblSarkiTur">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tur" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblTakipListesi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TakipEdenKullaniciID" Type="int" Nullable="false" />
+          <Property Name="TakipEdilenKullaniciID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblUlke">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UlkeIsmi" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__tblAlbum__Tur__2D27B809">
+          <End Role="tblSarkiTur" Type="Self.tblSarkiTur" Multiplicity="0..1" />
+          <End Role="tblAlbum" Type="Self.tblAlbum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSarkiTur">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblAlbum">
+              <PropertyRef Name="Tur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblKullan__RoleI__33D4B598">
+          <End Role="tblKullaniciRole" Type="Self.tblKullaniciRole" Multiplicity="0..1" />
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullaniciRole">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblKullanici">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblKullan__UlkeI__34C8D9D1">
+          <End Role="tblUlke" Type="Self.tblUlke" Multiplicity="0..1" />
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUlke">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblKullanici">
+              <PropertyRef Name="UlkeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPremiu__Kulla__37A5467C">
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblPremiumKullaniciOdendiBilgi" Type="Self.tblPremiumKullaniciOdendiBilgi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullanici">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblPremiumKullaniciOdendiBilgi">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblSanatc__Album__398D8EEE">
+          <End Role="tblAlbum" Type="Self.tblAlbum" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblSanatcininSarkilari" Type="Self.tblSanatcininSarkilari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAlbum">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblSanatcininSarkilari">
+              <PropertyRef Name="AlbumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblSanatc__Sanat__3A81B327">
+          <End Role="tblSanatci" Type="Self.tblSanatci" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblSanatcininSarkilari" Type="Self.tblSanatcininSarkilari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSanatci">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblSanatcininSarkilari">
+              <PropertyRef Name="SanatciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblSanatc__Sarki__3B75D760">
+          <End Role="tblSarki" Type="Self.tblSarki" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblSanatcininSarkilari" Type="Self.tblSanatcininSarkilari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSarki">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblSanatcininSarkilari">
+              <PropertyRef Name="SarkiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblSanatc__UlkeI__38996AB5">
+          <End Role="tblUlke" Type="Self.tblUlke" Multiplicity="0..1" />
+          <End Role="tblSanatci" Type="Self.tblSanatci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUlke">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblSanatci">
+              <PropertyRef Name="UlkeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblSarki__Tur__3C69FB99">
+          <End Role="tblSarkiTur" Type="Self.tblSarkiTur" Multiplicity="0..1" />
+          <End Role="tblSarki" Type="Self.tblSarki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSarkiTur">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblSarki">
+              <PropertyRef Name="Tur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblTakipL__Takip__3D5E1FD2">
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblTakipListesi" Type="Self.tblTakipListesi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullanici">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblTakipListesi">
+              <PropertyRef Name="TakipEdenKullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblTakipL__Takip__3E52440B">
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="0..1" />
+          <End Role="tblTakipListesi" Type="Self.tblTakipListesi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullanici">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblTakipListesi">
+              <PropertyRef Name="TakipEdilenKullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCalmaListelerindekiSarkilar_tblKullaniciCalmaListesi">
+          <End Role="tblKullaniciCalmaListesi" Type="Self.tblKullaniciCalmaListesi" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblCalmaListelerindekiSarkilar" Type="Self.tblCalmaListelerindekiSarkilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullaniciCalmaListesi">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblCalmaListelerindekiSarkilar">
+              <PropertyRef Name="KullaniciCalmaListesiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCalmaListelerindekiSarkilar_tblSarki">
+          <End Role="tblSanatcininSarkilari" Type="Self.tblSanatcininSarkilari" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblCalmaListelerindekiSarkilar" Type="Self.tblCalmaListelerindekiSarkilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSanatcininSarkilari">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblCalmaListelerindekiSarkilar">
+              <PropertyRef Name="SarkiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblKullaniciCalmaListesi_tblKullanici">
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblKullaniciCalmaListesi" Type="Self.tblKullaniciCalmaListesi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullanici">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblKullaniciCalmaListesi">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblKullaniciCalmaListesi_tblSarkiTur">
+          <End Role="tblSarkiTur" Type="Self.tblSarkiTur" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblKullaniciCalmaListesi" Type="Self.tblKullaniciCalmaListesi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSarkiTur">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblKullaniciCalmaListesi">
+              <PropertyRef Name="CalmaListesiTuru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_muzikModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAlbum" EntityType="Self.tblAlbum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAlbumdekiSanatcilar" EntityType="Self.tblAlbumdekiSanatcilar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAlbumdekiSarkilar" EntityType="Self.tblAlbumdekiSarkilar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCalmaListelerindekiSarkilar" EntityType="Self.tblCalmaListelerindekiSarkilar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblKullanici" EntityType="Self.tblKullanici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblKullaniciCalmaListesi" EntityType="Self.tblKullaniciCalmaListesi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblKullaniciRole" EntityType="Self.tblKullaniciRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPremiumKullaniciOdendiBilgi" EntityType="Self.tblPremiumKullaniciOdendiBilgi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSanatci" EntityType="Self.tblSanatci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSanatcininSarkilari" EntityType="Self.tblSanatcininSarkilari" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSarki" EntityType="Self.tblSarki" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSarkiTur" EntityType="Self.tblSarkiTur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTakipListesi" EntityType="Self.tblTakipListesi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUlke" EntityType="Self.tblUlke" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tblAlbum__Tur__2D27B809" Association="Self.FK__tblAlbum__Tur__2D27B809">
+            <End Role="tblSarkiTur" EntitySet="tblSarkiTur" />
+            <End Role="tblAlbum" EntitySet="tblAlbum" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblKullan__RoleI__33D4B598" Association="Self.FK__tblKullan__RoleI__33D4B598">
+            <End Role="tblKullaniciRole" EntitySet="tblKullaniciRole" />
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblKullan__UlkeI__34C8D9D1" Association="Self.FK__tblKullan__UlkeI__34C8D9D1">
+            <End Role="tblUlke" EntitySet="tblUlke" />
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPremiu__Kulla__37A5467C" Association="Self.FK__tblPremiu__Kulla__37A5467C">
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+            <End Role="tblPremiumKullaniciOdendiBilgi" EntitySet="tblPremiumKullaniciOdendiBilgi" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblSanatc__Album__398D8EEE" Association="Self.FK__tblSanatc__Album__398D8EEE">
+            <End Role="tblAlbum" EntitySet="tblAlbum" />
+            <End Role="tblSanatcininSarkilari" EntitySet="tblSanatcininSarkilari" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblSanatc__Sanat__3A81B327" Association="Self.FK__tblSanatc__Sanat__3A81B327">
+            <End Role="tblSanatci" EntitySet="tblSanatci" />
+            <End Role="tblSanatcininSarkilari" EntitySet="tblSanatcininSarkilari" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblSanatc__Sarki__3B75D760" Association="Self.FK__tblSanatc__Sarki__3B75D760">
+            <End Role="tblSarki" EntitySet="tblSarki" />
+            <End Role="tblSanatcininSarkilari" EntitySet="tblSanatcininSarkilari" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblSanatc__UlkeI__38996AB5" Association="Self.FK__tblSanatc__UlkeI__38996AB5">
+            <End Role="tblUlke" EntitySet="tblUlke" />
+            <End Role="tblSanatci" EntitySet="tblSanatci" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblSarki__Tur__3C69FB99" Association="Self.FK__tblSarki__Tur__3C69FB99">
+            <End Role="tblSarkiTur" EntitySet="tblSarkiTur" />
+            <End Role="tblSarki" EntitySet="tblSarki" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblTakipL__Takip__3D5E1FD2" Association="Self.FK__tblTakipL__Takip__3D5E1FD2">
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+            <End Role="tblTakipListesi" EntitySet="tblTakipListesi" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblTakipL__Takip__3E52440B" Association="Self.FK__tblTakipL__Takip__3E52440B">
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+            <End Role="tblTakipListesi" EntitySet="tblTakipListesi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCalmaListelerindekiSarkilar_tblKullaniciCalmaListesi" Association="Self.FK_tblCalmaListelerindekiSarkilar_tblKullaniciCalmaListesi">
+            <End Role="tblKullaniciCalmaListesi" EntitySet="tblKullaniciCalmaListesi" />
+            <End Role="tblCalmaListelerindekiSarkilar" EntitySet="tblCalmaListelerindekiSarkilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCalmaListelerindekiSarkilar_tblSarki" Association="Self.FK_tblCalmaListelerindekiSarkilar_tblSarki">
+            <End Role="tblSanatcininSarkilari" EntitySet="tblSanatcininSarkilari" />
+            <End Role="tblCalmaListelerindekiSarkilar" EntitySet="tblCalmaListelerindekiSarkilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblKullaniciCalmaListesi_tblKullanici" Association="Self.FK_tblKullaniciCalmaListesi_tblKullanici">
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+            <End Role="tblKullaniciCalmaListesi" EntitySet="tblKullaniciCalmaListesi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblKullaniciCalmaListesi_tblSarkiTur" Association="Self.FK_tblKullaniciCalmaListesi_tblSarkiTur">
+            <End Role="tblSarkiTur" EntitySet="tblSarkiTur" />
+            <End Role="tblKullaniciCalmaListesi" EntitySet="tblKullaniciCalmaListesi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_muzikModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="db_muzikEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="db_muzikModel.sysdiagram" />
+          <EntitySet Name="tblAlbums" EntityType="db_muzikModel.tblAlbum" />
+          <EntitySet Name="tblAlbumdekiSanatcilars" EntityType="db_muzikModel.tblAlbumdekiSanatcilar" />
+          <EntitySet Name="tblAlbumdekiSarkilars" EntityType="db_muzikModel.tblAlbumdekiSarkilar" />
+          <EntitySet Name="tblCalmaListelerindekiSarkilars" EntityType="db_muzikModel.tblCalmaListelerindekiSarkilar" />
+          <EntitySet Name="tblKullanicis" EntityType="db_muzikModel.tblKullanici" />
+          <EntitySet Name="tblKullaniciCalmaListesis" EntityType="db_muzikModel.tblKullaniciCalmaListesi" />
+          <EntitySet Name="tblKullaniciRoles" EntityType="db_muzikModel.tblKullaniciRole" />
+          <EntitySet Name="tblPremiumKullaniciOdendiBilgis" EntityType="db_muzikModel.tblPremiumKullaniciOdendiBilgi" />
+          <EntitySet Name="tblSanatcis" EntityType="db_muzikModel.tblSanatci" />
+          <EntitySet Name="tblSanatcininSarkilaris" EntityType="db_muzikModel.tblSanatcininSarkilari" />
+          <EntitySet Name="tblSarkis" EntityType="db_muzikModel.tblSarki" />
+          <EntitySet Name="tblSarkiTurs" EntityType="db_muzikModel.tblSarkiTur" />
+          <EntitySet Name="tblTakipListesis" EntityType="db_muzikModel.tblTakipListesi" />
+          <EntitySet Name="tblUlkes" EntityType="db_muzikModel.tblUlke" />
+          <AssociationSet Name="FK__tblAlbum__Tur__2D27B809" Association="db_muzikModel.FK__tblAlbum__Tur__2D27B809">
+            <End Role="tblSarkiTur" EntitySet="tblSarkiTurs" />
+            <End Role="tblAlbum" EntitySet="tblAlbums" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblSanatc__Album__398D8EEE" Association="db_muzikModel.FK__tblSanatc__Album__398D8EEE">
+            <End Role="tblAlbum" EntitySet="tblAlbums" />
+            <End Role="tblSanatcininSarkilari" EntitySet="tblSanatcininSarkilaris" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCalmaListelerindekiSarkilar_tblKullaniciCalmaListesi" Association="db_muzikModel.FK_tblCalmaListelerindekiSarkilar_tblKullaniciCalmaListesi">
+            <End Role="tblKullaniciCalmaListesi" EntitySet="tblKullaniciCalmaListesis" />
+            <End Role="tblCalmaListelerindekiSarkilar" EntitySet="tblCalmaListelerindekiSarkilars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCalmaListelerindekiSarkilar_tblSarki" Association="db_muzikModel.FK_tblCalmaListelerindekiSarkilar_tblSarki">
+            <End Role="tblSanatcininSarkilari" EntitySet="tblSanatcininSarkilaris" />
+            <End Role="tblCalmaListelerindekiSarkilar" EntitySet="tblCalmaListelerindekiSarkilars" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblKullan__RoleI__33D4B598" Association="db_muzikModel.FK__tblKullan__RoleI__33D4B598">
+            <End Role="tblKullaniciRole" EntitySet="tblKullaniciRoles" />
+            <End Role="tblKullanici" EntitySet="tblKullanicis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblKullan__UlkeI__34C8D9D1" Association="db_muzikModel.FK__tblKullan__UlkeI__34C8D9D1">
+            <End Role="tblUlke" EntitySet="tblUlkes" />
+            <End Role="tblKullanici" EntitySet="tblKullanicis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPremiu__Kulla__37A5467C" Association="db_muzikModel.FK__tblPremiu__Kulla__37A5467C">
+            <End Role="tblKullanici" EntitySet="tblKullanicis" />
+            <End Role="tblPremiumKullaniciOdendiBilgi" EntitySet="tblPremiumKullaniciOdendiBilgis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblTakipL__Takip__3D5E1FD2" Association="db_muzikModel.FK__tblTakipL__Takip__3D5E1FD2">
+            <End Role="tblKullanici" EntitySet="tblKullanicis" />
+            <End Role="tblTakipListesi" EntitySet="tblTakipListesis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblTakipL__Takip__3E52440B" Association="db_muzikModel.FK__tblTakipL__Takip__3E52440B">
+            <End Role="tblKullanici" EntitySet="tblKullanicis" />
+            <End Role="tblTakipListesi" EntitySet="tblTakipListesis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblKullaniciCalmaListesi_tblKullanici" Association="db_muzikModel.FK_tblKullaniciCalmaListesi_tblKullanici">
+            <End Role="tblKullanici" EntitySet="tblKullanicis" />
+            <End Role="tblKullaniciCalmaListesi" EntitySet="tblKullaniciCalmaListesis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblKullaniciCalmaListesi_tblSarkiTur" Association="db_muzikModel.FK_tblKullaniciCalmaListesi_tblSarkiTur">
+            <End Role="tblSarkiTur" EntitySet="tblSarkiTurs" />
+            <End Role="tblKullaniciCalmaListesi" EntitySet="tblKullaniciCalmaListesis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblSanatc__Sanat__3A81B327" Association="db_muzikModel.FK__tblSanatc__Sanat__3A81B327">
+            <End Role="tblSanatci" EntitySet="tblSanatcis" />
+            <End Role="tblSanatcininSarkilari" EntitySet="tblSanatcininSarkilaris" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblSanatc__UlkeI__38996AB5" Association="db_muzikModel.FK__tblSanatc__UlkeI__38996AB5">
+            <End Role="tblUlke" EntitySet="tblUlkes" />
+            <End Role="tblSanatci" EntitySet="tblSanatcis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblSanatc__Sarki__3B75D760" Association="db_muzikModel.FK__tblSanatc__Sarki__3B75D760">
+            <End Role="tblSarki" EntitySet="tblSarkis" />
+            <End Role="tblSanatcininSarkilari" EntitySet="tblSanatcininSarkilaris" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblSarki__Tur__3C69FB99" Association="db_muzikModel.FK__tblSarki__Tur__3C69FB99">
+            <End Role="tblSarkiTur" EntitySet="tblSarkiTurs" />
+            <End Role="tblSarki" EntitySet="tblSarkis" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblAlbum">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Tur" Type="Int32" />
+          <NavigationProperty Name="tblSarkiTur" Relationship="db_muzikModel.FK__tblAlbum__Tur__2D27B809" FromRole="tblAlbum" ToRole="tblSarkiTur" />
+          <NavigationProperty Name="tblSanatcininSarkilaris" Relationship="db_muzikModel.FK__tblSanatc__Album__398D8EEE" FromRole="tblAlbum" ToRole="tblSanatcininSarkilari" />
+        </EntityType>
+        <EntityType Name="tblAlbumdekiSanatcilar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AlbumID" Type="Int32" />
+          <Property Name="SanatciID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblAlbumdekiSarkilar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AlbumID" Type="Int32" />
+          <Property Name="SarkiID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblCalmaListelerindekiSarkilar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SarkiID" Type="Int32" Nullable="false" />
+          <Property Name="KullaniciCalmaListesiID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblKullaniciCalmaListesi" Relationship="db_muzikModel.FK_tblCalmaListelerindekiSarkilar_tblKullaniciCalmaListesi" FromRole="tblCalmaListelerindekiSarkilar" ToRole="tblKullaniciCalmaListesi" />
+          <NavigationProperty Name="tblSanatcininSarkilari" Relationship="db_muzikModel.FK_tblCalmaListelerindekiSarkilar_tblSarki" FromRole="tblCalmaListelerindekiSarkilar" ToRole="tblSanatcininSarkilari" />
+        </EntityType>
+        <EntityType Name="tblKullanici">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Parola" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AbonelikTur" Type="Int16" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" />
+          <Property Name="UlkeID" Type="Int32" />
+          <NavigationProperty Name="tblKullaniciRole" Relationship="db_muzikModel.FK__tblKullan__RoleI__33D4B598" FromRole="tblKullanici" ToRole="tblKullaniciRole" />
+          <NavigationProperty Name="tblUlke" Relationship="db_muzikModel.FK__tblKullan__UlkeI__34C8D9D1" FromRole="tblKullanici" ToRole="tblUlke" />
+          <NavigationProperty Name="tblPremiumKullaniciOdendiBilgis" Relationship="db_muzikModel.FK__tblPremiu__Kulla__37A5467C" FromRole="tblKullanici" ToRole="tblPremiumKullaniciOdendiBilgi" />
+          <NavigationProperty Name="tblTakipListesis" Relationship="db_muzikModel.FK__tblTakipL__Takip__3D5E1FD2" FromRole="tblKullanici" ToRole="tblTakipListesi" />
+          <NavigationProperty Name="tblTakipListesis1" Relationship="db_muzikModel.FK__tblTakipL__Takip__3E52440B" FromRole="tblKullanici" ToRole="tblTakipListesi" />
+          <NavigationProperty Name="tblKullaniciCalmaListesis" Relationship="db_muzikModel.FK_tblKullaniciCalmaListesi_tblKullanici" FromRole="tblKullanici" ToRole="tblKullaniciCalmaListesi" />
+        </EntityType>
+        <EntityType Name="tblKullaniciCalmaListesi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" />
+          <Property Name="CalmaListesiTuru" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblCalmaListelerindekiSarkilars" Relationship="db_muzikModel.FK_tblCalmaListelerindekiSarkilar_tblKullaniciCalmaListesi" FromRole="tblKullaniciCalmaListesi" ToRole="tblCalmaListelerindekiSarkilar" />
+          <NavigationProperty Name="tblKullanici" Relationship="db_muzikModel.FK_tblKullaniciCalmaListesi_tblKullanici" FromRole="tblKullaniciCalmaListesi" ToRole="tblKullanici" />
+          <NavigationProperty Name="tblSarkiTur" Relationship="db_muzikModel.FK_tblKullaniciCalmaListesi_tblSarkiTur" FromRole="tblKullaniciCalmaListesi" ToRole="tblSarkiTur" />
+        </EntityType>
+        <EntityType Name="tblKullaniciRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RolIsmi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblKullanicis" Relationship="db_muzikModel.FK__tblKullan__RoleI__33D4B598" FromRole="tblKullaniciRole" ToRole="tblKullanici" />
+        </EntityType>
+        <EntityType Name="tblPremiumKullaniciOdendiBilgi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" />
+          <Property Name="Odendi" Type="Boolean" />
+          <NavigationProperty Name="tblKullanici" Relationship="db_muzikModel.FK__tblPremiu__Kulla__37A5467C" FromRole="tblPremiumKullaniciOdendiBilgi" ToRole="tblKullanici" />
+        </EntityType>
+        <EntityType Name="tblSanatci">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UlkeID" Type="Int32" />
+          <NavigationProperty Name="tblSanatcininSarkilaris" Relationship="db_muzikModel.FK__tblSanatc__Sanat__3A81B327" FromRole="tblSanatci" ToRole="tblSanatcininSarkilari" />
+          <NavigationProperty Name="tblUlke" Relationship="db_muzikModel.FK__tblSanatc__UlkeI__38996AB5" FromRole="tblSanatci" ToRole="tblUlke" />
+        </EntityType>
+        <EntityType Name="tblSanatcininSarkilari">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SarkiID" Type="Int32" Nullable="false" />
+          <Property Name="SanatciID" Type="Int32" Nullable="false" />
+          <Property Name="AlbumID" Type="Int32" Nullable="false" />
+          <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SarkiSure" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="DinlenmeSayisi" Type="Int32" />
+          <NavigationProperty Name="tblAlbum" Relationship="db_muzikModel.FK__tblSanatc__Album__398D8EEE" FromRole="tblSanatcininSarkilari" ToRole="tblAlbum" />
+          <NavigationProperty Name="tblCalmaListelerindekiSarkilars" Relationship="db_muzikModel.FK_tblCalmaListelerindekiSarkilar_tblSarki" FromRole="tblSanatcininSarkilari" ToRole="tblCalmaListelerindekiSarkilar" />
+          <NavigationProperty Name="tblSanatci" Relationship="db_muzikModel.FK__tblSanatc__Sanat__3A81B327" FromRole="tblSanatcininSarkilari" ToRole="tblSanatci" />
+          <NavigationProperty Name="tblSarki" Relationship="db_muzikModel.FK__tblSanatc__Sarki__3B75D760" FromRole="tblSanatcininSarkilari" ToRole="tblSarki" />
+        </EntityType>
+        <EntityType Name="tblSarki">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Tur" Type="Int32" />
+          <NavigationProperty Name="tblSanatcininSarkilaris" Relationship="db_muzikModel.FK__tblSanatc__Sarki__3B75D760" FromRole="tblSarki" ToRole="tblSanatcininSarkilari" />
+          <NavigationProperty Name="tblSarkiTur" Relationship="db_muzikModel.FK__tblSarki__Tur__3C69FB99" FromRole="tblSarki" ToRole="tblSarkiTur" />
+        </EntityType>
+        <EntityType Name="tblSarkiTur">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tur" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblAlbums" Relationship="db_muzikModel.FK__tblAlbum__Tur__2D27B809" FromRole="tblSarkiTur" ToRole="tblAlbum" />
+          <NavigationProperty Name="tblKullaniciCalmaListesis" Relationship="db_muzikModel.FK_tblKullaniciCalmaListesi_tblSarkiTur" FromRole="tblSarkiTur" ToRole="tblKullaniciCalmaListesi" />
+          <NavigationProperty Name="tblSarkis" Relationship="db_muzikModel.FK__tblSarki__Tur__3C69FB99" FromRole="tblSarkiTur" ToRole="tblSarki" />
+        </EntityType>
+        <EntityType Name="tblTakipListesi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TakipEdenKullaniciID" Type="Int32" Nullable="false" />
+          <Property Name="TakipEdilenKullaniciID" Type="Int32" />
+          <NavigationProperty Name="tblKullanici" Relationship="db_muzikModel.FK__tblTakipL__Takip__3D5E1FD2" FromRole="tblTakipListesi" ToRole="tblKullanici" />
+          <NavigationProperty Name="tblKullanici1" Relationship="db_muzikModel.FK__tblTakipL__Takip__3E52440B" FromRole="tblTakipListesi" ToRole="tblKullanici" />
+        </EntityType>
+        <EntityType Name="tblUlke">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UlkeIsmi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblKullanicis" Relationship="db_muzikModel.FK__tblKullan__UlkeI__34C8D9D1" FromRole="tblUlke" ToRole="tblKullanici" />
+          <NavigationProperty Name="tblSanatcis" Relationship="db_muzikModel.FK__tblSanatc__UlkeI__38996AB5" FromRole="tblUlke" ToRole="tblSanatci" />
+        </EntityType>
+        <Association Name="FK__tblAlbum__Tur__2D27B809">
+          <End Type="db_muzikModel.tblSarkiTur" Role="tblSarkiTur" Multiplicity="0..1" />
+          <End Type="db_muzikModel.tblAlbum" Role="tblAlbum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSarkiTur">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblAlbum">
+              <PropertyRef Name="Tur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblSanatc__Album__398D8EEE">
+          <End Type="db_muzikModel.tblAlbum" Role="tblAlbum" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="db_muzikModel.tblSanatcininSarkilari" Role="tblSanatcininSarkilari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAlbum">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblSanatcininSarkilari">
+              <PropertyRef Name="AlbumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCalmaListelerindekiSarkilar_tblKullaniciCalmaListesi">
+          <End Type="db_muzikModel.tblKullaniciCalmaListesi" Role="tblKullaniciCalmaListesi" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="db_muzikModel.tblCalmaListelerindekiSarkilar" Role="tblCalmaListelerindekiSarkilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullaniciCalmaListesi">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblCalmaListelerindekiSarkilar">
+              <PropertyRef Name="KullaniciCalmaListesiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCalmaListelerindekiSarkilar_tblSarki">
+          <End Type="db_muzikModel.tblSanatcininSarkilari" Role="tblSanatcininSarkilari" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="db_muzikModel.tblCalmaListelerindekiSarkilar" Role="tblCalmaListelerindekiSarkilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSanatcininSarkilari">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblCalmaListelerindekiSarkilar">
+              <PropertyRef Name="SarkiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblKullan__RoleI__33D4B598">
+          <End Type="db_muzikModel.tblKullaniciRole" Role="tblKullaniciRole" Multiplicity="0..1" />
+          <End Type="db_muzikModel.tblKullanici" Role="tblKullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullaniciRole">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblKullanici">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblKullan__UlkeI__34C8D9D1">
+          <End Type="db_muzikModel.tblUlke" Role="tblUlke" Multiplicity="0..1" />
+          <End Type="db_muzikModel.tblKullanici" Role="tblKullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUlke">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblKullanici">
+              <PropertyRef Name="UlkeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPremiu__Kulla__37A5467C">
+          <End Type="db_muzikModel.tblKullanici" Role="tblKullanici" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="db_muzikModel.tblPremiumKullaniciOdendiBilgi" Role="tblPremiumKullaniciOdendiBilgi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullanici">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblPremiumKullaniciOdendiBilgi">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblTakipL__Takip__3D5E1FD2">
+          <End Type="db_muzikModel.tblKullanici" Role="tblKullanici" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="db_muzikModel.tblTakipListesi" Role="tblTakipListesi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullanici">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblTakipListesi">
+              <PropertyRef Name="TakipEdenKullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblTakipL__Takip__3E52440B">
+          <End Type="db_muzikModel.tblKullanici" Role="tblKullanici" Multiplicity="0..1" />
+          <End Type="db_muzikModel.tblTakipListesi" Role="tblTakipListesi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullanici">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblTakipListesi">
+              <PropertyRef Name="TakipEdilenKullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblKullaniciCalmaListesi_tblKullanici">
+          <End Type="db_muzikModel.tblKullanici" Role="tblKullanici" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="db_muzikModel.tblKullaniciCalmaListesi" Role="tblKullaniciCalmaListesi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullanici">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblKullaniciCalmaListesi">
+              <PropertyRef Name="KullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblKullaniciCalmaListesi_tblSarkiTur">
+          <End Type="db_muzikModel.tblSarkiTur" Role="tblSarkiTur" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="db_muzikModel.tblKullaniciCalmaListesi" Role="tblKullaniciCalmaListesi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSarkiTur">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblKullaniciCalmaListesi">
+              <PropertyRef Name="CalmaListesiTuru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblSanatc__Sanat__3A81B327">
+          <End Type="db_muzikModel.tblSanatci" Role="tblSanatci" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="db_muzikModel.tblSanatcininSarkilari" Role="tblSanatcininSarkilari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSanatci">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblSanatcininSarkilari">
+              <PropertyRef Name="SanatciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblSanatc__UlkeI__38996AB5">
+          <End Type="db_muzikModel.tblUlke" Role="tblUlke" Multiplicity="0..1" />
+          <End Type="db_muzikModel.tblSanatci" Role="tblSanatci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUlke">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblSanatci">
+              <PropertyRef Name="UlkeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblSanatc__Sarki__3B75D760">
+          <End Type="db_muzikModel.tblSarki" Role="tblSarki" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="db_muzikModel.tblSanatcininSarkilari" Role="tblSanatcininSarkilari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSarki">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblSanatcininSarkilari">
+              <PropertyRef Name="SarkiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblSarki__Tur__3C69FB99">
+          <End Type="db_muzikModel.tblSarkiTur" Role="tblSarkiTur" Multiplicity="0..1" />
+          <End Type="db_muzikModel.tblSarki" Role="tblSarki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSarkiTur">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblSarki">
+              <PropertyRef Name="Tur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_muzikModelStoreContainer" CdmEntityContainer="db_muzikEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="db_muzikModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAlbums">
+            <EntityTypeMapping TypeName="db_muzikModel.tblAlbum">
+              <MappingFragment StoreEntitySet="tblAlbum">
+                <ScalarProperty Name="Tur" ColumnName="Tur" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAlbumdekiSanatcilars">
+            <EntityTypeMapping TypeName="db_muzikModel.tblAlbumdekiSanatcilar">
+              <MappingFragment StoreEntitySet="tblAlbumdekiSanatcilar">
+                <ScalarProperty Name="SanatciID" ColumnName="SanatciID" />
+                <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAlbumdekiSarkilars">
+            <EntityTypeMapping TypeName="db_muzikModel.tblAlbumdekiSarkilar">
+              <MappingFragment StoreEntitySet="tblAlbumdekiSarkilar">
+                <ScalarProperty Name="SarkiID" ColumnName="SarkiID" />
+                <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCalmaListelerindekiSarkilars">
+            <EntityTypeMapping TypeName="db_muzikModel.tblCalmaListelerindekiSarkilar">
+              <MappingFragment StoreEntitySet="tblCalmaListelerindekiSarkilar">
+                <ScalarProperty Name="KullaniciCalmaListesiID" ColumnName="KullaniciCalmaListesiID" />
+                <ScalarProperty Name="SarkiID" ColumnName="SarkiID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblKullanicis">
+            <EntityTypeMapping TypeName="db_muzikModel.tblKullanici">
+              <MappingFragment StoreEntitySet="tblKullanici">
+                <ScalarProperty Name="UlkeID" ColumnName="UlkeID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="AbonelikTur" ColumnName="AbonelikTur" />
+                <ScalarProperty Name="Parola" ColumnName="Parola" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblKullaniciCalmaListesis">
+            <EntityTypeMapping TypeName="db_muzikModel.tblKullaniciCalmaListesi">
+              <MappingFragment StoreEntitySet="tblKullaniciCalmaListesi">
+                <ScalarProperty Name="CalmaListesiTuru" ColumnName="CalmaListesiTuru" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblKullaniciRoles">
+            <EntityTypeMapping TypeName="db_muzikModel.tblKullaniciRole">
+              <MappingFragment StoreEntitySet="tblKullaniciRole">
+                <ScalarProperty Name="RolIsmi" ColumnName="RolIsmi" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPremiumKullaniciOdendiBilgis">
+            <EntityTypeMapping TypeName="db_muzikModel.tblPremiumKullaniciOdendiBilgi">
+              <MappingFragment StoreEntitySet="tblPremiumKullaniciOdendiBilgi">
+                <ScalarProperty Name="Odendi" ColumnName="Odendi" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSanatcis">
+            <EntityTypeMapping TypeName="db_muzikModel.tblSanatci">
+              <MappingFragment StoreEntitySet="tblSanatci">
+                <ScalarProperty Name="UlkeID" ColumnName="UlkeID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSanatcininSarkilaris">
+            <EntityTypeMapping TypeName="db_muzikModel.tblSanatcininSarkilari">
+              <MappingFragment StoreEntitySet="tblSanatcininSarkilari">
+                <ScalarProperty Name="DinlenmeSayisi" ColumnName="DinlenmeSayisi" />
+                <ScalarProperty Name="SarkiSure" ColumnName="SarkiSure" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="AlbumID" ColumnName="AlbumID" />
+                <ScalarProperty Name="SanatciID" ColumnName="SanatciID" />
+                <ScalarProperty Name="SarkiID" ColumnName="SarkiID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSarkis">
+            <EntityTypeMapping TypeName="db_muzikModel.tblSarki">
+              <MappingFragment StoreEntitySet="tblSarki">
+                <ScalarProperty Name="Tur" ColumnName="Tur" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSarkiTurs">
+            <EntityTypeMapping TypeName="db_muzikModel.tblSarkiTur">
+              <MappingFragment StoreEntitySet="tblSarkiTur">
+                <ScalarProperty Name="Tur" ColumnName="Tur" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTakipListesis">
+            <EntityTypeMapping TypeName="db_muzikModel.tblTakipListesi">
+              <MappingFragment StoreEntitySet="tblTakipListesi">
+                <ScalarProperty Name="TakipEdilenKullaniciID" ColumnName="TakipEdilenKullaniciID" />
+                <ScalarProperty Name="TakipEdenKullaniciID" ColumnName="TakipEdenKullaniciID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUlkes">
+            <EntityTypeMapping TypeName="db_muzikModel.tblUlke">
+              <MappingFragment StoreEntitySet="tblUlke">
+                <ScalarProperty Name="UlkeIsmi" ColumnName="UlkeIsmi" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
